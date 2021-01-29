@@ -1,22 +1,19 @@
 let Employee = require("./employee");
 const axios = require("axios");
 
-// creating an new instance of Employee
+// creating a new instance of Employee => Engineer
 
 class Engineer extends Employee {
   constructor(name, id, email, github) {
     super(name, id, email);
     this.github = github;
   }
-
   getRole() {
     return "Engineer";
   }
-
   getGithub() {
     return axios.get("https://api.github.com/users/" + this.github);
   }
-
   generateCard() {
     return `<div class="card" style="width: 18rem;">
       <div class="card-body">

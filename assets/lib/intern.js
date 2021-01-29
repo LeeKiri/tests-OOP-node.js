@@ -1,18 +1,18 @@
 let Employee = require("./employee");
 
+//creates new instance of Employee => Intern
+
 class Intern extends Employee {
   constructor(name, id, email, school) {
     super(name, id, email);
     this.school = school;
   }
-  getSchool(){
+  getSchool() {
     return this.school;
   }
   getRole() {
     return "Intern";
   }
-
-
   generateCard() {
     return `<div class="card" style="width: 18rem;">
       <div class="card-body">
@@ -29,7 +29,7 @@ class Intern extends Employee {
           <li class="list-group-item"><a href="#" class="card-link">School: ${this.getSchool()}</a></li>
       </ul>
   </div>`;
-  };
+  }
 }
 
 module.exports = Intern;

@@ -18,15 +18,14 @@ describe("Engineer", () => {
       expect(newEngineer.getEmail()).toEqual("bobbarker@company");
       expect(newEngineer.getRole()).toEqual("Engineer");
 
+      //gets axios promise and returns the data to test github url
       newEngineer
         .getGithub()
         .then((response) => {
           console.log(response.data);
-
           expect(response.data.html_url).toEqual("https://github.com/LeeKiri");
           return response.data.html_url;
         })
-
         .catch((err) => {
           console.log(err);
           return err;
