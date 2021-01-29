@@ -1,15 +1,20 @@
 let Employee = require("./employee");
 
 class Intern extends Employee {
-  constructor(name, id, email) {
+  constructor(name, id, email, school) {
     super(name, id, email);
+    this.school = school;
   }
-  getRole = () => (this.role = "Intern");
+  getSchool(){
+    return this.school;
+  }
+  getRole() {
+    return "Intern";
+  }
 
-  getSchool = () => this.school;
 
-  generateCard = () => {
-    `<div class="card" style="width: 18rem;">
+  generateCard() {
+    return `<div class="card" style="width: 18rem;">
       <div class="card-body">
           <div class="cardHead">
               <h5 class="card-title text-white">${this.name}</h5>

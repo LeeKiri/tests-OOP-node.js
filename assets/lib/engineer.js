@@ -1,26 +1,24 @@
 let Employee = require("./employee");
 const axios = require("axios");
 
+// creating an new instance of Employee
+
 class Engineer extends Employee {
-  constructor(name, id, email) {
+  constructor(name, id, email, github) {
     super(name, id, email);
+    this.github = github;
   }
 
   getRole() {
-  "Engineer";
+    return "Engineer";
   }
 
-  getGithub = () => {
-    axios
-      .get("https://api.github.com/users/" + data.github)
-      .then((response) => {
-        data.profileLink = response.data.html_url;
-      })
-      .catch((err) => console.log(err));
-  };
+  getGithub() {
+    return axios.get("https://api.github.com/users/" + this.github);
+  }
 
-  generateCard = () => {
-    `<div class="card" style="width: 18rem;">
+  generateCard() {
+    return `<div class="card" style="width: 18rem;">
       <div class="card-body">
           <div class="cardHead">
               <h5 class="card-title text-white">${this.name}</h5>
@@ -35,7 +33,7 @@ class Engineer extends Employee {
           <li class="list-group-item"><a href="#" class="card-link">Github: ${this.getGithub()}</a></li>
       </ul>
   </div>`;
-  };
+  }
 }
 
 module.exports = Engineer;

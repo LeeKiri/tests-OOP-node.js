@@ -5,13 +5,15 @@ class Manager extends Employee {
     super(name, id, email);
     this.officeNumber = officeNumber;
   }
-
+getOfficeNumber(){
+  return this.officeNumber;
+}
   getRole() {
     return "Manager";
   }
 
   generateCard() {
-    `<div class="card" style="width: 18rem;">
+  return  `<div class="card" style="width: 18rem;">
     <div class="card-body">
         <div class="cardHead">
             <h5 class="card-title text-white">${this.name}</h5>
