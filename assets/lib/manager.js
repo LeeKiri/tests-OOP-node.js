@@ -1,4 +1,4 @@
-let Employee = require("./employee");
+const Employee = require("./employee");
 
 class Manager extends Employee {
   constructor(name, id, email, officeNumber) {
@@ -6,9 +6,11 @@ class Manager extends Employee {
     this.officeNumber = officeNumber;
   }
 
-  getRole = () => (this.role = "Manager");
+  getRole() {
+    return "Manager";
+  }
 
-  generateCard = () => {
+  generateCard() {
     `<div class="card" style="width: 18rem;">
     <div class="card-body">
         <div class="cardHead">
@@ -25,8 +27,8 @@ class Manager extends Employee {
           this.officeNumber
         }</a></li>
     </ul>
-</div>`;
-  };
+    </div>`;
+  }
 }
 
 module.exports = Manager;

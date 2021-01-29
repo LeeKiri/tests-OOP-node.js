@@ -6,7 +6,9 @@ class Engineer extends Employee {
     super(name, id, email);
   }
 
-  getRole = () => (this.role = "Engineer");
+  getRole() {
+  "Engineer";
+  }
 
   getGithub = () => {
     axios
