@@ -22,24 +22,24 @@ describe("Employee", () => {
     let newEmployee = new Employee();
     expect(newEmployee).toBe("undefined");
   });
-});
-
-//Positive test Role
-
-describe("Employee", () => {
-  describe("Employee role", () => {
-    it("Employee role should return a string 'Employee'", () => {
-      let newEmployee = new Employee();
-      let employeeRole = newEmployee.getRole();
-      expect(employeeRole).toEqual("Employee");
-    });
-  });
-
-  //Negative Role Test
   
-  it("employee role should return undefined", () => {
-    let newEmployee = new Employee();
-    let employeeRole = newEmployee.getRole();
-    expect(employeeRole).toBe("undefined");
-  });
+  //Positive test Role
+  
+  describe("Employee", () => {
+      describe("Employee role", () => {
+          it("Employee role should return a string 'Employee'", () => {
+              let newEmployee = new Employee();
+              let employeeRole = newEmployee.getRole();
+              expect(employeeRole).toEqual("Employee");
+            });
+        });
+        
+        //Negative Role Test
+        
+        it("employee role should return undefined", () => {
+            let newEmployee = new Employee();
+            let employeeRole = newEmployee.getRole();
+            expect(employeeRole).toBe("undefined");
+        });
+    });
 });
