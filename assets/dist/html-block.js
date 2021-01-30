@@ -1,4 +1,4 @@
-generateHtml = () => {
+const generateHtml = (employeeCards) => {
   return `<!DOCTYPE html>
     <html lang="en">
     
@@ -16,7 +16,7 @@ generateHtml = () => {
         </div>
     </nav>
     <div id="insertCards">
-        
+        ${employeeCards}
     </div>
     <body>
     
@@ -25,4 +25,4 @@ generateHtml = () => {
     </html>`;
 };
 
-module.exports = generateHtml();
+module.exports = generateHtml;

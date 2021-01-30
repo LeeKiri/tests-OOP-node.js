@@ -93,12 +93,7 @@ const internQuestions = [
 ];
 const employeesAdded = [];
 
-const init = () => {
-  console.log("yes");
-  generateWebpage();
-};
-
-askManagerQuestions = async () => {
+const askManagerQuestions = async () => {
   const data = await inquirer.prompt(initQuestions);
 
   const renderManager = new Manager(
@@ -107,13 +102,13 @@ askManagerQuestions = async () => {
     data.managerEmail,
     data.managerOfficeNumber
   );
-  employeesAdded.push(renderManager);
+  employeesAdded.push(renderManager.generateCard());
   console.log("Manager added successfully", data);
 
   return data;
 };
 
-askEngineerQuestions = async () => {
+const askEngineerQuestions = async () => {
   const data = await inquirer.prompt(engineerQuestions);
 
   const renderEngineer = new Engineer(
@@ -122,13 +117,13 @@ askEngineerQuestions = async () => {
     data.engineerEmail,
     data.github
   );
-  employeesAdded.push(renderEngineer);
+  employeesAdded.push(renderEngineer.generateCard());
   console.log("Engineer added successfully");
 
   return data;
 };
 
-askInternQuestions = async () => {
+const askInternQuestions = async () => {
   const data = await inquirer.prompt(internQuestions);
 
   const renderIntern = new Intern(
@@ -137,23 +132,22 @@ askInternQuestions = async () => {
     data.internEmail,
     data.internSchool
   );
-  employeesAdded.push(renderIntern);
+  employeesAdded.push(renderIntern.generateCard());
   console.log("Intern added successfully");
 
   return data;
 };
 
-// endQuestions = () => {
-//   for(const currentEmployee of employeesAdded){
-//     const htmlBlock = generateHtml(data);
-//     fs.writeFile(currentEmployees, htmlBlock, function(err){
-//       if(err) throw err;
-//       console.log("file created");
-//   }
-// },
-// }
+const createFile = async () => {
+  await fs.promises.writeFile(
+    "employees.html",
+    generateHtml(employeesAdded.join()),
+    "utf8"
+  );
+  console.log("file created");
+};
 
-generateWebpage = async () => {
+const generateWebpage = async () => {
   let inquirerAnswers = await askManagerQuestions();
   console.log(inquirerAnswers);
   while (inquirerAnswers.nextStep !== "Finish building the team") {
@@ -164,8 +158,15 @@ generateWebpage = async () => {
       inquirerAnswers = await askInternQuestions();
     }
   }
-  console.log("employees", employeesAdded);
-  // endQuestions();
+  try {
+    await createFile();
+  } catch (error) {
+    console.error("Error creating file", error);
+  }
+};
+
+const init = () => {
+  generateWebpage();
 };
 
 init();
