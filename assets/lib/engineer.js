@@ -1,4 +1,4 @@
-let Employee = require("./employee");
+const Employee = require("./employee");
 const axios = require("axios");
 
 // creating a new instance of Employee => Engineer
