@@ -5,7 +5,7 @@ const axios = require("axios");
 
 describe("Engineer", () => {
   describe("Engineer Object", () => {
-    it("should return an object with name, id, email, role, github url and generate a card as string", () => {
+    it("should return an object with name, id, email, role, github username, github url and generate a card as string", () => {
       let newEngineer = new Engineer(
         "Bob Barker",
         3,
@@ -16,21 +16,10 @@ describe("Engineer", () => {
       expect(newEngineer.getName()).toEqual("Bob Barker");
       expect(newEngineer.getId()).toEqual(3);
       expect(newEngineer.getEmail()).toEqual("bobbarker@company");
+      expect(newEngineer.getUserName()).toEqual("LeeKiri");
       expect(newEngineer.getRole()).toEqual("Engineer");
-
-      //gets axios promise and returns the data to test github url
-      newEngineer
-        .getGithub()
-        .then((response) => {
-          console.log(response.data);
-          expect(response.data.html_url).toEqual("https://github.com/LeeKiri");
-          return response.data.html_url;
-        })
-        .catch((err) => {
-          console.log(err);
-          return err;
-        });
-
+      expect(newEngineer.getGithubUrl()).toEqual("https://github.com/LeeKiri")
+     
       expect(typeof newEngineer.generateCard()).toEqual("string");
     });
   });
