@@ -23,7 +23,7 @@ class Intern extends Employee {
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">ID: ${this.id}</li>
-                            <li class="list-group-item"><a href="#" class="card-link">Email: ${
+                            <li class="list-group-item">Email: <a href="mailto:${this.email}" class="card-link"> ${
                               this.email
                             }</a></li>
                             <li class="list-group-item">School: ${this.getSchool()}</li>

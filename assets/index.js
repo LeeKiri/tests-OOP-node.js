@@ -2,7 +2,7 @@ let Employee = require("./lib/employee");
 let Engineer = require("./lib/engineer");
 let Manager = require("./lib/manager");
 let Intern = require("./lib/intern");
-const generateHtml = require("./dist/html-block");
+const generateHtml = require("./lib/src/html-template");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
@@ -103,7 +103,7 @@ const askManagerQuestions = async () => {
     data.managerOfficeNumber
   );
   employeesAdded.push(renderManager.generateCard());
-  console.log("Manager added successfully", data);
+  console.log("Manager added successfully");
 
   return data;
 };
@@ -140,7 +140,7 @@ const askInternQuestions = async () => {
 
 const createFile = async () => {
   await fs.promises.writeFile(
-    "employees.html",
+    "dist/employees.html",
     generateHtml(employeesAdded.join()),
     "utf8"
   );
@@ -149,7 +149,6 @@ const createFile = async () => {
 
 const generateWebpage = async () => {
   let inquirerAnswers = await askManagerQuestions();
-  console.log(inquirerAnswers);
   while (inquirerAnswers.nextStep !== "Finish building the team") {
     if (inquirerAnswers.nextStep === "Add an engineer") {
       inquirerAnswers = await askEngineerQuestions();
