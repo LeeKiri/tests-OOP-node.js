@@ -1,11 +1,12 @@
-let Employee = require("./lib/employee");
+//module imports
 let Engineer = require("./lib/engineer");
 let Manager = require("./lib/manager");
 let Intern = require("./lib/intern");
-const generateHtml = require("./lib/src/html-template");
+const generateHtml = require("./src/html-template");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+// initial array of questions to create manager profile
 const initQuestions = [
   {
     type: "input",
@@ -34,7 +35,7 @@ const initQuestions = [
     name: "nextStep",
   },
 ];
-
+// array of questions to create engineer profile
 const engineerQuestions = [
   {
     type: "input",
@@ -63,6 +64,7 @@ const engineerQuestions = [
     name: "nextStep",
   },
 ];
+//array of questions to create intern profile
 const internQuestions = [
   {
     type: "input",
@@ -91,38 +93,43 @@ const internQuestions = [
     name: "nextStep",
   },
 ];
+
+// empty array that takes employee cards once they have been created
 const employeesAdded = [];
 
+// function to call inquirer, ask manager questions and store the answers
 const askManagerQuestions = async () => {
   const data = await inquirer.prompt(initQuestions);
-
+  
   const renderManager = new Manager(
     data.managerName,
     data.managerID,
     data.managerEmail,
     data.managerOfficeNumber
-  );
-  employeesAdded.push(renderManager.generateCard());
-  console.log("Manager added successfully");
-
-  return data;
-};
-
-const askEngineerQuestions = async () => {
-  const data = await inquirer.prompt(engineerQuestions);
-
-  const renderEngineer = new Engineer(
-    data.engineerName,
-    data.engineerID,
-    data.engineerEmail,
-    data.github
-  );
-  employeesAdded.push(renderEngineer.generateCard());
-  console.log("Engineer added successfully");
-
-  return data;
-};
-
+    );
+    employeesAdded.push(renderManager.generateCard());
+    console.log("Manager added successfully");
+    
+    return data;
+  };
+  
+  // function to call inquirer, ask engineer questions and store the answers
+  const askEngineerQuestions = async () => {
+    const data = await inquirer.prompt(engineerQuestions);
+    
+    const renderEngineer = new Engineer(
+      data.engineerName,
+      data.engineerID,
+      data.engineerEmail,
+      data.github
+      );
+      employeesAdded.push(renderEngineer.generateCard());
+      console.log("Engineer added successfully");
+      
+      return data;
+    };
+    
+    // function to call inquirer, ask intern questions and store the answers
 const askInternQuestions = async () => {
   const data = await inquirer.prompt(internQuestions);
 
@@ -137,7 +144,7 @@ const askInternQuestions = async () => {
 
   return data;
 };
-
+// when the user finishes entering employees the html file is created
 const createFile = async () => {
   await fs.promises.writeFile(
     "dist/employees.html",
@@ -146,7 +153,7 @@ const createFile = async () => {
   );
   console.log("file created");
 };
-
+// function to flow through the inquirer question arrays until the user chooses to finish building their team
 const generateWebpage = async () => {
   let inquirerAnswers = await askManagerQuestions();
   while (inquirerAnswers.nextStep !== "Finish building the team") {
@@ -163,9 +170,9 @@ const generateWebpage = async () => {
     console.error("Error creating file", error);
   }
 };
-
+// initializes the program and calls generateWebpage to cue inquirer questions
 const init = () => {
   generateWebpage();
 };
-
+// begins the inline command prompts
 init();

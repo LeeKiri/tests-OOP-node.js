@@ -1,7 +1,6 @@
 const Engineer = require("../lib/engineer");
-const axios = require("axios");
 
-//Positive Engineer Object Test
+// Engineer Object Test
 
 describe("Engineer", () => {
   describe("Engineer Object", () => {
@@ -18,8 +17,7 @@ describe("Engineer", () => {
       expect(newEngineer.getEmail()).toEqual("bobbarker@company");
       expect(newEngineer.getUserName()).toEqual("LeeKiri");
       expect(newEngineer.getRole()).toEqual("Engineer");
-      expect(newEngineer.getGithubUrl()).toEqual("https://github.com/LeeKiri")
-     
+      expect(newEngineer.getGithubUrl()).toEqual("https://github.com/LeeKiri");
       expect(typeof newEngineer.generateCard()).toEqual("string");
     });
   });
